@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>CS1998</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mediator.Abstractions" Version="2.1.7" />
+    <PackageReference Include="Mediator.SourceGenerator" Version="2.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Passport\src\Passport.Abstraction\Passport.Abstraction.csproj" />
+    <ProjectReference Include="..\..\..\Passport\src\Passport.Application\Passport.Application.csproj" />
+    <ProjectReference Include="..\PhysicalData.Domain\PhysicalData.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="PhysicalData.Api.Test" />
+    <InternalsVisibleTo Include="PhysicalData.Application.Test" />
+    <InternalsVisibleTo Include="PhysicalData.Infrastructure.Test" />
+  </ItemGroup>
+
+</Project>

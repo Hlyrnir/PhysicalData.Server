@@ -1,0 +1,6 @@
+@PhysicalData.Api_HostAddress = http://localhost:5104
+
+GET {{PhysicalData.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
