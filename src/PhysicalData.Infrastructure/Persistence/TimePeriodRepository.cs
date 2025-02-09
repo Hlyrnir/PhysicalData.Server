@@ -106,9 +106,9 @@ namespace PhysicalData.Infrastructure.Persistence
 									[{TimePeriodColumn.Offset}], 
 									[{TimePeriodColumn.PhysicalDimensionId}] 
 									FROM [{TimePeriodTable.TimePeriod}] 
-									WHERE (@PhysicalDimensionId IS NULL OR [{TimePeriodColumn.PhysicalDimensionId}] = @PhysicalDimensionId) 
-                                    AND (@Magnitude IS NULL OR [{TimePeriodColumn.Magnitude}] = @Magnitude) 
+									WHERE (@Magnitude IS NULL OR [{TimePeriodColumn.Magnitude}] LIKE('%'|| @Magnitude ||'%')) 
                                     AND (@Offset IS NULL OR [{TimePeriodColumn.Offset}] = @Offset) 
+                                    AND (@PhysicalDimensionId IS NULL OR [{TimePeriodColumn.PhysicalDimensionId}] = @PhysicalDimensionId) 
 									LIMIT @PageSize 
 									OFFSET @PageOffset;";
 
@@ -237,9 +237,13 @@ namespace PhysicalData.Infrastructure.Persistence
                 string sStatement = @$"SELECT 
 									COUNT([{TimePeriodColumn.Id}]) 
 									FROM [{TimePeriodTable.TimePeriod}] 
-									WHERE (@PhysicalDimensionId IS NULL OR [{TimePeriodColumn.PhysicalDimensionId}] = @PhysicalDimensionId);";
+									WHERE (@Magnitude IS NULL OR [{TimePeriodColumn.Magnitude}] LIKE('%'|| @Magnitude ||'%')) 
+                                    AND (@Offset IS NULL OR [{TimePeriodColumn.Offset}] = @Offset) 
+                                    AND (@PhysicalDimensionId IS NULL OR [{TimePeriodColumn.PhysicalDimensionId}] = @PhysicalDimensionId);";
 
                 DynamicParameters dpParameter = new DynamicParameters();
+                dpParameter.Add("Magnitude", optFilter.Magnitude);
+                dpParameter.Add("Offset", optFilter.Offset);
                 dpParameter.Add("PhysicalDimensionId", optFilter.PhysicalDimensionId);
 
                 int iQuantity = 0;

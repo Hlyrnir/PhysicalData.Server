@@ -5,6 +5,7 @@ using PhysicalData.Application.Filter;
 using PhysicalData.Application.Interface;
 using PhysicalData.Application.Result;
 using PhysicalData.Application.Transfer;
+using System.Text.Json;
 
 namespace PhysicalData.Application.Command.TimePeriod.Create
 {
@@ -24,10 +25,12 @@ namespace PhysicalData.Application.Command.TimePeriod.Create
             if (tknCancellation.IsCancellationRequested)
                 return new MessageResult<bool>(DefaultMessageError.TaskAborted);
 
+            string sMagnitude = JsonSerializer.Serialize(msgMessage.Magnitude);
+
             TimePeriodByFilterOption optFilter = new TimePeriodByFilterOption()
             {
                 PhysicalDimensionId = msgMessage.PhysicalDimensionId,
-                Magnitude = msgMessage.Magnitude,
+                Magnitude = sMagnitude,
                 Offset = msgMessage.Offset,
                 Page = 1,
                 PageSize = 1

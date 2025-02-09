@@ -2,15 +2,25 @@
 {
     public static class TimePeriod
     {
-        private static readonly double[] dMagnitude = { 0.0, 1.0, 2.0, 3.0, 4.0};
-
         public static Domain.Aggregate.TimePeriod CreateDefault(Guid guPhysicalDimensionId)
         {
+            Random rndmGenerator = new Random();
+
+            int iSize = 5;
+            double[] dMagnitude = new double[iSize];
+
+            for (int i = 0; i < iSize; i++)
+            {
+                dMagnitude[i] = rndmGenerator.NextDouble();
+            }
+
+            double dOffset = rndmGenerator.NextDouble();
+
             Domain.Aggregate.TimePeriod? pdTimePeriod = Domain.Aggregate.TimePeriod.Initialize(
                 sConcurrencyStamp: Guid.NewGuid().ToString(),
                 guId: Guid.NewGuid(),
                 dMagnitude: dMagnitude,
-                dOffset: 0.0,
+                dOffset: dOffset,
                 guPhysicalDimensionId: guPhysicalDimensionId);
 
             if (pdTimePeriod is null)
