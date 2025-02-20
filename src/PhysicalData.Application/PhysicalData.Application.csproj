@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <AssemblyName>PhysicalData.Application</AssemblyName>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -11,16 +12,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mediator.Abstractions" Version="2.1.7" />
-    <PackageReference Include="Mediator.SourceGenerator" Version="2.1.7">
+    <PackageReference Include="Mediator.Abstractions" />
+    <PackageReference Include="Mediator.SourceGenerator">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Passport.Abstraction" />
+    <PackageReference Include="Passport.Application" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Passport\src\Passport.Abstraction\Passport.Abstraction.csproj" />
-    <ProjectReference Include="..\..\..\Passport\src\Passport.Application\Passport.Application.csproj" />
     <ProjectReference Include="..\PhysicalData.Domain\PhysicalData.Domain.csproj" />
   </ItemGroup>
 

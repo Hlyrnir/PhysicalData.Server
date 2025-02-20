@@ -1,9 +1,10 @@
 #### Description
 
+Shows an example of a Minimal API using Passport.
+
 Requirements:
 
-- [Passport](https://github.com/Hlyrnir/Passport) in same the folder as this repository
-- *appsettings.json* in project PhysicalData.Api
+- *appsettings.json* in PhysicalData.Api project folder
 
 For realisation following concepts has been used.
 
