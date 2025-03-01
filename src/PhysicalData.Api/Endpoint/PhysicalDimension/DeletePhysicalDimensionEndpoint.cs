@@ -10,11 +10,12 @@ namespace PhysicalData.Api.Endpoint.PhysicalDimension
     {
         public const string Name = "DeletePhysicalDimension";
 
-        public static void AddDeletePhysicalDimensionEndpoint(this IEndpointRouteBuilder epBuilder, params string[] sPolicyName)
+        public static void AddDeletePhysicalDimensionEndpoint(this IEndpointRouteBuilder epBuilder, string sCorsPolicyName, params string[] sAuthorizationPolicyName)
         {
             epBuilder.MapDelete(
                 EndpointRoute.PhysicalDimension.Delete, DeletePhysicalDimension)
-                .RequireAuthorization(sPolicyName)
+                .RequireCors(sCorsPolicyName)
+                .RequireAuthorization(sAuthorizationPolicyName)
                 .WithName(Name)
                 .WithTags("PhysicalDimension")
                 .Produces(StatusCodes.Status401Unauthorized)

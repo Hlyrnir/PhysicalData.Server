@@ -8,6 +8,7 @@ using Passport.Abstraction.Authentication;
 using Passport.Api.Endpoint;
 using PhysicalData.Api;
 using PhysicalData.Api.Authorization;
+using PhysicalData.Api.Cors;
 using PhysicalData.Api.DataProtection;
 using PhysicalData.Api.Endpoint;
 using PhysicalData.Api.Health;
@@ -21,14 +22,12 @@ webBuilder.Services.AddPhysicalDataServiceCollection()
     .AddAuthorization()
     .AddSqliteDatabase(sConnectionStringName: "PhysicalData");
 
-// Add hasher
 webBuilder.Services.AddOptions<PassportHashSetting>()
     .Bind(webBuilder.Configuration.GetSection(PassportHashSetting.SectionName))
     .ValidateOnStart();
 
 webBuilder.Services.AddScoped<IPassportHasher, PassportHasher>();
 
-// Add data protection
 webBuilder.Services.AddOptions<DataProtectionSetting>()
     .Bind(webBuilder.Configuration.GetSection(DataProtectionSetting.SectionName))
     .ValidateOnStart();
@@ -44,10 +43,14 @@ webBuilder.Services.AddTransient(prvService =>
 webBuilder.Services.AddHealthChecks()
     .AddCheck<HealthCheck>(HealthCheck.Name);
 
-// Add jwt authentication
 webBuilder.Services.AddOptions<JwtTokenSetting>()
     .Bind(webBuilder.Configuration.GetSection(JwtTokenSetting.SectionName))
     .ValidateOnStart();
+
+webBuilder.Services.AddCors(optCors =>
+{
+    optCors.AddPolicy(DefaultCorsPolicy.Name, DefaultCorsPolicy.RestrictedOrigin(webBuilder.Configuration["Cors:Origin"]!));
+});
 
 webBuilder.Services.AddAuthentication(optAuthentication =>
 {
@@ -72,7 +75,6 @@ webBuilder.Services.AddAuthentication(optAuthentication =>
     };
 });
 
-//// see https://learn.microsoft.com/en-us/aspnet/core/security/authorization/limitingidentitybyscheme?view=aspnetcore-7.0
 webBuilder.Services.AddAuthorization(optAuthorization =>
 {
     optAuthorization.FallbackPolicy = new AuthorizationPolicyBuilder()
@@ -80,7 +82,7 @@ webBuilder.Services.AddAuthorization(optAuthorization =>
     .RequireAuthenticatedUser()
     .Build();
 
-    optAuthorization.AddPolicy(EndpointPolicy.Name, EndpointPolicy.EndpointWithPassport());
+    optAuthorization.AddPolicy(PassportAuthorizationPolicy.Name, PassportAuthorizationPolicy.WithPassport());
 });
 
 webBuilder.Services.AddApiVersioning(optVersion =>
@@ -94,15 +96,12 @@ webBuilder.Services.AddApiVersioning(optVersion =>
 webBuilder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 webBuilder.Services.AddProblemDetails();
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 webBuilder.Services.AddEndpointsApiExplorer();
 webBuilder.Services.AddSwaggerGen();
 webBuilder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerOption>();
 
 WebApplication webApplication = webBuilder.Build();
 
-// Configure the HTTP request pipeline.
 if (webApplication.Environment.IsEnvironment("Development"))
 {
     webApplication.UseSwagger();
@@ -121,13 +120,16 @@ else if (webApplication.Environment.IsEnvironment("Testing"))
 }
 
 webApplication.UseExceptionHandler();
+
 webApplication.UseHsts();
 
 webApplication.UseHttpsRedirection();
 
-// Use JWT bearer token for authentication
+webApplication.UseRouting();
+
+webApplication.UseCors(DefaultCorsPolicy.Name);
+
 webApplication.UseAuthentication();
-// Authorize only authenticated user to endpoints
 webApplication.UseAuthorization();
 
 webApplication.MapHealthChecks("/_health")
@@ -135,15 +137,29 @@ webApplication.MapHealthChecks("/_health")
 
 webApplication.AddEndpointVersionSet();
 
-webApplication.AddAuthenticationEndpoint(EndpointPolicy.Name);
-webApplication.AddPassportEndpoint(EndpointPolicy.Name);
-webApplication.AddPassportHolderEndpoint(EndpointPolicy.Name);
-webApplication.AddPassportTokenEndpoint(EndpointPolicy.Name);
-webApplication.AddPassportVisaEndpoint(EndpointPolicy.Name);
+webApplication.AddAuthenticationEndpoint(
+    sCorsPolicyName: DefaultCorsPolicy.Name,
+    sAuthorizationPolicyName: PassportAuthorizationPolicy.Name);
+webApplication.AddPassportEndpoint(
+    sCorsPolicyName: DefaultCorsPolicy.Name,
+    sAuthorizationPolicyName: PassportAuthorizationPolicy.Name);
+webApplication.AddPassportHolderEndpoint(
+    sCorsPolicyName: DefaultCorsPolicy.Name,
+    sAuthorizationPolicyName: PassportAuthorizationPolicy.Name);
+webApplication.AddPassportTokenEndpoint(
+    sCorsPolicyName: DefaultCorsPolicy.Name,
+    sAuthorizationPolicyName: PassportAuthorizationPolicy.Name);
+webApplication.AddPassportVisaEndpoint(
+    sCorsPolicyName: DefaultCorsPolicy.Name,
+    sAuthorizationPolicyName: PassportAuthorizationPolicy.Name);
 
 webApplication.AddPhysicalDataEndpointVersionSet();
 
-webApplication.AddPhysicalDimensionEndpoint(EndpointPolicy.Name);
-webApplication.AddTimePeriodEndpoint(EndpointPolicy.Name);
+webApplication.AddPhysicalDimensionEndpoint(
+    sCorsPolicyName: DefaultCorsPolicy.Name,
+    sAuthorizationPolicyName: PassportAuthorizationPolicy.Name);
+webApplication.AddTimePeriodEndpoint(
+    sCorsPolicyName:DefaultCorsPolicy.Name,
+    sAuthorizationPolicyName: PassportAuthorizationPolicy.Name);
 
-webApplication.Run();
+await webApplication.RunAsync();

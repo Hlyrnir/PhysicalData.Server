@@ -11,11 +11,12 @@ namespace PhysicalData.Api.Endpoint.TimePeriod
     {
         public const string Name = "UpdateTimePeriod";
 
-        public static void AddUpdateTimePeriodEndpoint(this IEndpointRouteBuilder epBuilder, params string[] sPolicyName)
+        public static void AddUpdateTimePeriodEndpoint(this IEndpointRouteBuilder epBuilder, string sCorsPolicyName, params string[] sAuthorizationPolicyName)
         {
             epBuilder.MapPut(
                 EndpointRoute.TimePeriod.Update, UpdateTimePeriod)
-                .RequireAuthorization(sPolicyName)
+                .RequireCors(sCorsPolicyName)
+                .RequireAuthorization(sAuthorizationPolicyName)
                 .WithName(Name)
                 .WithTags("TimePeriod")
                 .Produces(StatusCodes.Status401Unauthorized)

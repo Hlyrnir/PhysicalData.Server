@@ -11,11 +11,12 @@ namespace PhysicalData.Api.Endpoint.PhysicalDimension
     {
         public const string Name = "UpdatePhysicalDimension";
 
-        public static void AddUpdatePhysicalDimensionEndpoint(this IEndpointRouteBuilder epBuilder, params string[] sPolicyName)
+        public static void AddUpdatePhysicalDimensionEndpoint(this IEndpointRouteBuilder epBuilder, string sCorsPolicyName, params string[] sAuthorizationPolicyName)
         {
             epBuilder.MapPut(
                 EndpointRoute.PhysicalDimension.Update, UpdatePhysicalDimension)
-                .RequireAuthorization(sPolicyName)
+                .RequireCors(sCorsPolicyName)
+                .RequireAuthorization(sAuthorizationPolicyName)
                 .WithName(Name)
                 .WithTags("PhysicalDimension")
                 .Produces(StatusCodes.Status401Unauthorized)

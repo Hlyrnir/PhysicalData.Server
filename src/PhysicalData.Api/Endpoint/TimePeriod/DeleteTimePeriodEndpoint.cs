@@ -10,11 +10,12 @@ namespace PhysicalData.Api.Endpoint.TimePeriod
     {
         public const string Name = "DeleteTimePeriod";
 
-        public static void AddDeleteTimePeriodEndpoint(this IEndpointRouteBuilder epBuilder, params string[] sPolicyName)
+        public static void AddDeleteTimePeriodEndpoint(this IEndpointRouteBuilder epBuilder, string sCorsPolicyName, params string[] sAuthorizationPolicyName)
         {
             epBuilder.MapDelete(
                 EndpointRoute.TimePeriod.Delete, DeleteTimePeriod)
-                .RequireAuthorization(sPolicyName)
+                .RequireCors(sCorsPolicyName)
+                .RequireAuthorization(sAuthorizationPolicyName)
                 .WithName(Name)
                 .WithTags("TimePeriod")
                 .Produces(StatusCodes.Status401Unauthorized)

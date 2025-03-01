@@ -9,6 +9,7 @@ tmp/
 src/PhysicalData.Api/appsettings.json
 src/PhysicalData.Api/appsettings.Development.json
 src/PhysicalData.Api/appsettings.Testing.json
+src/PhysicalData.Api/Properties/launchSettings.json
 
 # User-specific files
 *.rsuser

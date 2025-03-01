@@ -11,11 +11,12 @@ namespace PhysicalData.Api.Endpoint.TimePeriod
     {
         public const string Name = "FindTimePeriodById";
 
-        public static void AddFindTimePeriodByIdEndpoint(this IEndpointRouteBuilder epBuilder, params string[] sPolicyName)
+        public static void AddFindTimePeriodByIdEndpoint(this IEndpointRouteBuilder epBuilder, string sCorsPolicyName, params string[] sAuthorizationPolicyName)
         {
             epBuilder.MapGet(
                 EndpointRoute.TimePeriod.GetById, FindTimePeriodById)
-                .RequireAuthorization(sPolicyName)
+                .RequireCors(sCorsPolicyName)
+                .RequireAuthorization(sAuthorizationPolicyName)
                 .WithName(Name)
                 .WithTags("TimePeriod")
                 .Produces(StatusCodes.Status401Unauthorized)

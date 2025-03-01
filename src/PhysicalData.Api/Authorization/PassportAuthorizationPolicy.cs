@@ -4,11 +4,11 @@ using Passport.Api;
 
 namespace PhysicalData.Api.Authorization
 {
-    public static class EndpointPolicy
+    public static class PassportAuthorizationPolicy
     {
-        public const string Name = "ENDPOINT_PASSPORT";
+        public const string Name = "AUTHORIZATION_PASSPORT";
 
-        public static AuthorizationPolicy EndpointWithPassport()
+        public static AuthorizationPolicy WithPassport()
         {
             var plcyBuilder = new AuthorizationPolicyBuilder();
 
