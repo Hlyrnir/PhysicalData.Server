@@ -35,7 +35,7 @@ namespace PhysicalData.Application.Interface
         /// </summary>
         /// <param name="tknCancellation"></param>
         /// <returns></returns>
-        Task<RepositoryResult<IEnumerable<PhysicalDimensionTransferObject>>> FindByFilterAsync(PhysicalDimensionByFilterOption optFilter, CancellationToken tknCancellation);
+        Task<RepositoryResult<IEnumerable<PhysicalDimensionTransferObject>>> FindByFilterAsync(PhysicalDimensionFilterOption optFilter, CancellationToken tknCancellation);
 
         /// <summary>
         /// 
@@ -51,7 +51,7 @@ namespace PhysicalData.Application.Interface
         /// <param name="optFilter"></param>
         /// <param name="tknCancellation"></param>
         /// <returns></returns>
-        Task<RepositoryResult<int>> QuantityByFilterAsync(PhysicalDimensionByFilterOption optFilter, CancellationToken tknCancellation);
+        Task<RepositoryResult<int>> QuantityByFilterAsync(PhysicalDimensionFilterOption optFilter, CancellationToken tknCancellation);
 
         /// <summary>
         /// 

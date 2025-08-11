@@ -35,7 +35,7 @@ namespace PhysicalData.Application.Interface
         /// </summary>
         /// <param name="tknCancellation"></param>
         /// <returns></returns>
-        Task<RepositoryResult<IEnumerable<TimePeriodTransferObject>>> FindByFilterAsync(TimePeriodByFilterOption optFilter, CancellationToken tknCancellation);
+        Task<RepositoryResult<IEnumerable<TimePeriodTransferObject>>> FindByFilterAsync(TimePeriodFilterOption optFilter, CancellationToken tknCancellation);
 
         /// <summary>
         /// 
@@ -51,7 +51,7 @@ namespace PhysicalData.Application.Interface
         /// <param name="optFilter"></param>
         /// <param name="tknCancellation"></param>
         /// <returns></returns>
-        Task<RepositoryResult<int>> QuantityByFilterAsync(TimePeriodByFilterOption optFilter, CancellationToken tknCancellation);
+        Task<RepositoryResult<int>> QuantityByFilterAsync(TimePeriodFilterOption optFilter, CancellationToken tknCancellation);
 
         /// <summary>
         /// 

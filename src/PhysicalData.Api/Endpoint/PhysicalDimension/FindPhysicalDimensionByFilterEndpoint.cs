@@ -17,7 +17,7 @@ namespace PhysicalData.Api.Endpoint.PhysicalDimension
         public static void AddFindPhysicalDimensionByFilterEndpoint(this IEndpointRouteBuilder epBuilder, string sCorsPolicyName, params string[] sAuthorizationPolicyName)
         {
             epBuilder.MapGet(
-                EndpointRoute.PhysicalDimension.GetUnspecific, FindPhysicalDimensionByFilter)
+                EndpointRoute.PhysicalDimension.GetByFilter, FindPhysicalDimensionByFilter)
                 .RequireCors(sCorsPolicyName)
                 .RequireAuthorization(sAuthorizationPolicyName)
                 .WithName(Name)
@@ -62,7 +62,7 @@ namespace PhysicalData.Api.Endpoint.PhysicalDimension
         {
             return new PhysicalDimensionByFilterQuery()
             {
-                Filter = new PhysicalDimensionByFilterOption
+                Filter = new PhysicalDimensionFilterOption
                 {
                     ConversionFactorToSI = rqstPhysicalDimension.ConversionFactorToSI,
                     CultureName = rqstPhysicalDimension.CultureName,

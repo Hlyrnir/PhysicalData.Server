@@ -1,6 +1,6 @@
 ﻿namespace PhysicalData.Application.Filter
 {
-    public class TimePeriodByFilterOption
+    public class TimePeriodFilterOption
     {
         public required Guid? PhysicalDimensionId { get; init; }
         public required string? Magnitude { get; init; }

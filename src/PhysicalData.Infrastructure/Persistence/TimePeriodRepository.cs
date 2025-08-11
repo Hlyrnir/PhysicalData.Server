@@ -92,7 +92,7 @@ namespace PhysicalData.Infrastructure.Persistence
         }
 
         /// <inheritdoc/>
-        public async Task<RepositoryResult<IEnumerable<TimePeriodTransferObject>>> FindByFilterAsync(TimePeriodByFilterOption optFilter, CancellationToken tknCancellation)
+        public async Task<RepositoryResult<IEnumerable<TimePeriodTransferObject>>> FindByFilterAsync(TimePeriodFilterOption optFilter, CancellationToken tknCancellation)
         {
             if (tknCancellation.IsCancellationRequested)
                 return new RepositoryResult<IEnumerable<TimePeriodTransferObject>>(DefaultRepositoryError.TaskAborted);
@@ -227,7 +227,7 @@ namespace PhysicalData.Infrastructure.Persistence
         }
 
         /// <inheritdoc/>
-        public async Task<RepositoryResult<int>> QuantityByFilterAsync(TimePeriodByFilterOption optFilter, CancellationToken tknCancellation)
+        public async Task<RepositoryResult<int>> QuantityByFilterAsync(TimePeriodFilterOption optFilter, CancellationToken tknCancellation)
         {
             if (tknCancellation.IsCancellationRequested)
                 return new RepositoryResult<int>(DefaultRepositoryError.TaskAborted);

@@ -28,7 +28,7 @@ namespace PhysicalData.Application.Test.Query.TimePeriodByFilter
 
             TimePeriodByFilterQuery qryByFilter = new TimePeriodByFilterQuery()
             {
-                Filter = new TimePeriodByFilterOption()
+                Filter = new TimePeriodFilterOption()
                 {
                     Magnitude = null,
                     Offset = null,

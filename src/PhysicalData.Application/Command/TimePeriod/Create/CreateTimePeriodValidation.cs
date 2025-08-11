@@ -27,7 +27,7 @@ namespace PhysicalData.Application.Command.TimePeriod.Create
 
             string sMagnitude = JsonSerializer.Serialize(msgMessage.Magnitude);
 
-            TimePeriodByFilterOption optFilter = new TimePeriodByFilterOption()
+            TimePeriodFilterOption optFilter = new TimePeriodFilterOption()
             {
                 PhysicalDimensionId = msgMessage.PhysicalDimensionId,
                 Magnitude = sMagnitude,

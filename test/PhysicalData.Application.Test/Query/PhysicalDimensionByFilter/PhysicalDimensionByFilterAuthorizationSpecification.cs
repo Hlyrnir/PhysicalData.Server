@@ -23,7 +23,7 @@ namespace PhysicalData.Application.Test.Query.PhysicalDimensionByFilter
             // Arrange
             PhysicalDimensionByFilterQuery qryByFilter = new PhysicalDimensionByFilterQuery()
             {
-                Filter = new PhysicalDimensionByFilterOption()
+                Filter = new PhysicalDimensionFilterOption()
                 {
                     ConversionFactorToSI = null,
                     CultureName = null,

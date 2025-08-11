@@ -1,6 +1,6 @@
 ﻿namespace PhysicalData.Application.Filter
 {
-    public class PhysicalDimensionByFilterOption
+    public class PhysicalDimensionFilterOption
     {
         public required double? ConversionFactorToSI { get; init; }
         public required string? CultureName { get; init; }

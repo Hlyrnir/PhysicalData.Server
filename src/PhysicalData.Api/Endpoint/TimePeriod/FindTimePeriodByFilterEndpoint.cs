@@ -17,7 +17,7 @@ namespace PhysicalData.Api.Endpoint.TimePeriod
         public static void AddFindTimePeriodByFilterEndpoint(this IEndpointRouteBuilder epBuilder, string sCorsPolicyName, params string[] sAuthorizationPolicyName)
         {
             epBuilder.MapGet(
-                EndpointRoute.TimePeriod.GetUnspecific, FindTimePeriodByFilter)
+                EndpointRoute.TimePeriod.GetByFilter, FindTimePeriodByFilter)
                 .RequireCors(sCorsPolicyName)
                 .RequireAuthorization(sAuthorizationPolicyName)
                 .WithName(Name)
@@ -63,7 +63,7 @@ namespace PhysicalData.Api.Endpoint.TimePeriod
             return new TimePeriodByFilterQuery()
             {
                 RestrictedPassportId = guPassportId,
-                Filter = new TimePeriodByFilterOption()
+                Filter = new TimePeriodFilterOption()
                 {
                     PhysicalDimensionId = rqstTimePeriod.PhysicalDimensionId,
                     Magnitude = rqstTimePeriod.Magnitude,

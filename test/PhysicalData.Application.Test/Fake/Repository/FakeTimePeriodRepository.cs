@@ -39,7 +39,7 @@ namespace PhysicalData.Application.Test.Fake.Repository
             return new RepositoryResult<TimePeriodTransferObject>(dtoTimePeriodInRepository.Clone());
         }
 
-        public async Task<RepositoryResult<IEnumerable<TimePeriodTransferObject>>> FindByFilterAsync(TimePeriodByFilterOption optFilter, CancellationToken tknCancellation)
+        public async Task<RepositoryResult<IEnumerable<TimePeriodTransferObject>>> FindByFilterAsync(TimePeriodFilterOption optFilter, CancellationToken tknCancellation)
         {
             IList<TimePeriodTransferObject> lstTimePeriod = new List<TimePeriodTransferObject>();
 
@@ -62,7 +62,7 @@ namespace PhysicalData.Application.Test.Fake.Repository
             return new RepositoryResult<bool>(bResult);
         }
 
-        public async Task<RepositoryResult<int>> QuantityByFilterAsync(TimePeriodByFilterOption optFilter, CancellationToken tknCancellation)
+        public async Task<RepositoryResult<int>> QuantityByFilterAsync(TimePeriodFilterOption optFilter, CancellationToken tknCancellation)
         {
             int iQuantity = dictTimePeriod.Count;
 

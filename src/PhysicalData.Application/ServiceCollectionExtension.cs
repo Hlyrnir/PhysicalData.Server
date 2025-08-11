@@ -24,6 +24,8 @@ namespace PhysicalData.Application
                 mdtOptions =>
                 {
                     mdtOptions.ServiceLifetime = ServiceLifetime.Scoped;
+                    mdtOptions.GenerateTypesAsInternal = true;
+                    //mdtOptions.Assemblies = [typeof(Passport.Application.ServiceCollectionExtension)];
                 });
 
             cltService.AddScoped<IMessageValidation, MessageValidation>();

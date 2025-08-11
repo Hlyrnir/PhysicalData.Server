@@ -91,7 +91,7 @@ namespace PhysicalData.Infrastructure.Persistence
         }
 
         /// <inheritdoc/>
-        public async Task<RepositoryResult<IEnumerable<PhysicalDimensionTransferObject>>> FindByFilterAsync(PhysicalDimensionByFilterOption optFilter, CancellationToken tknCancellation)
+        public async Task<RepositoryResult<IEnumerable<PhysicalDimensionTransferObject>>> FindByFilterAsync(PhysicalDimensionFilterOption optFilter, CancellationToken tknCancellation)
         {
             if (tknCancellation.IsCancellationRequested)
                 return new RepositoryResult<IEnumerable<PhysicalDimensionTransferObject>>(DefaultRepositoryError.TaskAborted);
@@ -289,7 +289,7 @@ namespace PhysicalData.Infrastructure.Persistence
         }
 
         /// <inheritdoc/>
-        public async Task<RepositoryResult<int>> QuantityByFilterAsync(PhysicalDimensionByFilterOption optFilter, CancellationToken tknCancellation)
+        public async Task<RepositoryResult<int>> QuantityByFilterAsync(PhysicalDimensionFilterOption optFilter, CancellationToken tknCancellation)
         {
             if (tknCancellation.IsCancellationRequested)
                 return new RepositoryResult<int>(DefaultRepositoryError.TaskAborted);

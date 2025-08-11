@@ -29,7 +29,7 @@ namespace PhysicalData.Application.Command.PhysicalDimension.Create
             srvValidation.ValidateAgainstSqlInjection(msgMessage.Symbol, "Symbol");
             srvValidation.ValidateAgainstSqlInjection(msgMessage.Unit, "Unit");
 
-            PhysicalDimensionByFilterOption optFilter = new PhysicalDimensionByFilterOption()
+            PhysicalDimensionFilterOption optFilter = new PhysicalDimensionFilterOption()
             {
                 ConversionFactorToSI = msgMessage.ConversionFactorToSI,
                 CultureName = msgMessage.CultureName,

@@ -35,7 +35,7 @@ namespace PhysicalData.Infrastructure.Test.Persistence
             await fxtPhysicalData.TimePeriodRepository.InsertAsync(pdTimePeriod_03.MapToTransferObject(), prvTime.GetUtcNow(), CancellationToken.None);
             await fxtPhysicalData.TimePeriodRepository.InsertAsync(pdTimePeriod_04.MapToTransferObject(), prvTime.GetUtcNow(), CancellationToken.None);
 
-            TimePeriodByFilterOption optFilter = new TimePeriodByFilterOption()
+            TimePeriodFilterOption optFilter = new TimePeriodFilterOption()
             {
                 Magnitude = null,
                 Offset = null,
@@ -92,7 +92,7 @@ namespace PhysicalData.Infrastructure.Test.Persistence
 
             string sMagnitude = JsonSerializer.Serialize(pdTimePeriod_01.Magnitude);
 
-            TimePeriodByFilterOption optFilter = new TimePeriodByFilterOption()
+            TimePeriodFilterOption optFilter = new TimePeriodFilterOption()
             {
                 Magnitude = sMagnitude,
                 Offset = null,
@@ -149,7 +149,7 @@ namespace PhysicalData.Infrastructure.Test.Persistence
 
             double dOffset = pdTimePeriod_01.Offset;
 
-            TimePeriodByFilterOption optFilter = new TimePeriodByFilterOption()
+            TimePeriodFilterOption optFilter = new TimePeriodFilterOption()
             {
                 Magnitude = null,
                 Offset = dOffset,
@@ -206,7 +206,7 @@ namespace PhysicalData.Infrastructure.Test.Persistence
 
             Guid guPhysicalDimensionId = pdTimePeriod_01.PhysicalDimensionId;
 
-            TimePeriodByFilterOption optFilter = new TimePeriodByFilterOption()
+            TimePeriodFilterOption optFilter = new TimePeriodFilterOption()
             {
                 Magnitude = null,
                 Offset = null,

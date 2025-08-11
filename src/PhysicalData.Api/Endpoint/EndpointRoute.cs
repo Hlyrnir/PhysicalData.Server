@@ -12,7 +12,7 @@
             public const string Create = Base;
             public const string Delete = Base;
             public const string GetById = $"{Base}/{{guId:Guid}}";
-            public const string GetUnspecific = Base;
+            public const string GetByFilter = Base;
             public const string Update = Base;
         }
 
@@ -22,7 +22,7 @@
             public const string Create = Base;
             public const string Delete = Base;
             public const string GetById = $"{Base}/{{guId:Guid}}";
-            public const string GetUnspecific = Base;
+            public const string GetByFilter = Base;
             public const string Update = Base;
         }
     }

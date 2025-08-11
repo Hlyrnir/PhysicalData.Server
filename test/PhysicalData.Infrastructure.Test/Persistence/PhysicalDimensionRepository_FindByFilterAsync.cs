@@ -38,7 +38,7 @@ namespace PhysicalData.Infrastructure.Test.Persistence
             await fxtPhysicalData.PhysicalDimensionRepository.InsertAsync(pdPhysicalDimension_AmountOfSubstance.MapToTransferObject(), prvTime.GetUtcNow(), CancellationToken.None);
             await fxtPhysicalData.PhysicalDimensionRepository.InsertAsync(pdPhysicalDimension_Time.MapToTransferObject(), prvTime.GetUtcNow(), CancellationToken.None);
 
-            PhysicalDimensionByFilterOption optFilter = new PhysicalDimensionByFilterOption()
+            PhysicalDimensionFilterOption optFilter = new PhysicalDimensionFilterOption()
             {
                 ConversionFactorToSI = null,
                 CultureName = null,
@@ -126,7 +126,7 @@ namespace PhysicalData.Infrastructure.Test.Persistence
             await fxtPhysicalData.PhysicalDimensionRepository.InsertAsync(pdPhysicalDimension_AmountOfSubstance.MapToTransferObject(), prvTime.GetUtcNow(), CancellationToken.None);
             await fxtPhysicalData.PhysicalDimensionRepository.InsertAsync(pdPhysicalDimension_Time.MapToTransferObject(), prvTime.GetUtcNow(), CancellationToken.None);
 
-            PhysicalDimensionByFilterOption optFilter = new PhysicalDimensionByFilterOption()
+            PhysicalDimensionFilterOption optFilter = new PhysicalDimensionFilterOption()
             {
                 ConversionFactorToSI = null,
                 CultureName = null,

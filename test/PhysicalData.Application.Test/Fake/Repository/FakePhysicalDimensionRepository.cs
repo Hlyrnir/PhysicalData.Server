@@ -39,7 +39,7 @@ namespace PhysicalData.Application.Test.Fake.Repository
             return new RepositoryResult<PhysicalDimensionTransferObject>(dtoPhysicalDimensionInRepository.Clone());
         }
 
-        public async Task<RepositoryResult<IEnumerable<PhysicalDimensionTransferObject>>> FindByFilterAsync(PhysicalDimensionByFilterOption optFilter, CancellationToken tknCancellation)
+        public async Task<RepositoryResult<IEnumerable<PhysicalDimensionTransferObject>>> FindByFilterAsync(PhysicalDimensionFilterOption optFilter, CancellationToken tknCancellation)
         {
             IList<PhysicalDimensionTransferObject> lstPhysicalDimension = new List<PhysicalDimensionTransferObject>();
 
@@ -73,7 +73,7 @@ namespace PhysicalData.Application.Test.Fake.Repository
             return new RepositoryResult<bool>(bResult);
         }
 
-        public async Task<RepositoryResult<int>> QuantityByFilterAsync(PhysicalDimensionByFilterOption optFilter, CancellationToken tknCancellation)
+        public async Task<RepositoryResult<int>> QuantityByFilterAsync(PhysicalDimensionFilterOption optFilter, CancellationToken tknCancellation)
         {
             int iQuantity = dictPhysicalDimension.Count;
 
